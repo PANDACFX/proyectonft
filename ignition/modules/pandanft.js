@@ -1,14 +1,11 @@
-async function main() {
-    const bambuTokenAddress = "ADDRESS_OF_DEPLOYED_BAMBU_TOKEN";
-    const PandaNFT = await ethers.getContractFactory("PandaNFT");
-    const pandaNFT = await PandaNFT.deploy(bambuTokenAddress);
-    await pandaNFT.deployed();
-    console.log("PandaNFT deployed to:", pandaNFT.address);
-  }
-  
-  main()
-    .then(() => process.exit(0))
-    .catch((error) => {
-      console.error(error);
-      process.exit(1);
-    });
+const { buildModule } = require("@nomicfoundation/hardhat-ignition/modules");
+
+module.exports = buildModule("PandaNFTModule", (m) => {
+  const BambuToken = "0xcc33C5883c13327391B96a792cDC39A650163039"; // Reemplaza con la dirección real del contrato BambuToken
+
+  const pandaNFT = m.contract("PandaNFT", {
+    args: [BambuTokenAddress],
+  });
+
+  return { pandaNFT };
+});

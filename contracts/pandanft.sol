@@ -18,7 +18,7 @@ contract PandaNFT is ERC1155, Ownable {
     uint256 public constant MAX_SUPPLY = 5000;
     uint256 public constant TOTAL_AIRDROP_TOKENS = 60_000_000 * 10**18;
 
-    IERC20 public bambuToken;
+    IERC20 public BambuToken;
     uint256 public remainingAirdropTokens = TOTAL_AIRDROP_TOKENS;
     mapping(uint256 => uint256) public claimedTokens;
 
@@ -29,7 +29,7 @@ contract PandaNFT is ERC1155, Ownable {
         ERC1155("https://tan-necessary-wolverine-501.mypinata.cloud/ipfs/QmfPBcQRqtkL7Xxc679MitRUa9UqijaBT98bGTJ6z4Nucu")
         Ownable()
     {
-        bambuToken = IERC20(_bambuToken);
+        BambuToken = IERC20(_bambuToken);
     }
 
     function mint(uint256 amount) public payable {
@@ -53,7 +53,7 @@ contract PandaNFT is ERC1155, Ownable {
         remainingAirdropTokens -= tokensToClaim;
         claimedTokens[tokenId] = tokensToClaim;
 
-        require(bambuToken.transfer(msg.sender, tokensToClaim), "Token transfer failed");
+        require(BambuToken.transfer(msg.sender, tokensToClaim), "Token transfer failed");
 
         emit TokensClaimed(msg.sender, tokenId, tokensToClaim);
     }
