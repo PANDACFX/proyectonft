@@ -10,7 +10,7 @@ interface IERC20 {
     function balanceOf(address account) external view returns (uint256);
 }
 
-contract PandaNFT is ERC1155, Ownable {
+contract pandanft is ERC1155, Ownable {
     using Counters for Counters.Counter;
     Counters.Counter private _tokenIdCounter;
 
@@ -25,11 +25,11 @@ contract PandaNFT is ERC1155, Ownable {
     event NFTMinted(address indexed to, uint256 tokenId, uint256 amount);
     event TokensClaimed(address indexed to, uint256 tokenId, uint256 amount);
 
-    constructor(address _bambuToken)
+    constructor(address _BambuToken)
         ERC1155("https://tan-necessary-wolverine-501.mypinata.cloud/ipfs/QmfPBcQRqtkL7Xxc679MitRUa9UqijaBT98bGTJ6z4Nucu")
         Ownable()
     {
-        BambuToken = IERC20(_bambuToken);
+        BambuToken = IERC20(_BambuToken);
     }
 
     function mint(uint256 amount) public payable {
